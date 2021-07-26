@@ -1,5 +1,5 @@
 export interface Filme {
-  id?: number;
+  id?: number; // o ponto de interrogação significa que o item é opcional, nesse caso o próprio BACKEND gera o ID
   titulo: string;
   urlFoto?: string;
   dtLancamento: Date;

@@ -14,6 +14,8 @@ import { RodapeComponent } from './shared/components/rodape/rodape.component';
 import { AlertaComponent } from './shared/components/alerta/alerta.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,7 @@ import { AlertaComponent } from './shared/components/alerta/alerta.component';
     MaterialModule,
     AppRoutingModule
   ],
+  // entryComponents: são carregados assim que a aplicação se inicia
   entryComponents: [AlertaComponent],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt' }],
   bootstrap: [AppComponent]

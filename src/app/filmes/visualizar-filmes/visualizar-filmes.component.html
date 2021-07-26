@@ -1,18 +1,28 @@
 <mat-list *ngIf="filme; else semRegistro">
-  <mat-list-item> Título: {{filme.titulo}} </mat-list-item>
-  <mat-list-item> Data de lançamento: {{filme.dtLancamento | date: 'dd/MM/yyyy' }} </mat-list-item>
-  <mat-list-item> Gênero: {{filme.genero}} </mat-list-item>
-  <mat-list-item class="quebrar-linha"> Descrição: {{filme.descricao}} </mat-list-item>
-  <mat-list-item> Nota: <a [href]="filme.urlIMDb" target="_blank"> {{filme.nota}}</a> </mat-list-item>
-  <img mat-card-image [src]="filme.urlFoto || semFoto" >
-</mat-list>
-<mat-card>
+  <mat-list-item>Título: {{filme.titulo}}</mat-list-item>
+  <!-- arrumando a DATA com um PIPE próprio do Angular-->
+  <mat-list-item>Data de lançamento: {{filme.dtLancamento | date: 'dd/MM/yyyy' }}</mat-list-item>
+  <mat-list-item>Gênero: {{filme.genero}}</mat-list-item>
+  <mat-list-item class="quebrar-linha">Descrição: {{filme.descricao}}</mat-list-item>
+  <mat-list-item>Nota: &nbsp;
+    <span *ngIf="filme.urlIMDb && filme.nota">
+    <a [href]="filme.urlIMDb" target="_blank"> {{filme.nota}} (IMDb) </a></span>
+
+    <span *ngIf="!filme.urlIMDb && filme.nota">
+       {{filme.nota}} (IMDb)</span>
+
+  </mat-list-item>
+  <img mat-card-image [src]="filme.urlFoto || semFoto">
+
+  <mat-card>
   <mat-card-actions>
-    <button color="accent" mat-raised-button (click)="editar()">Editar</button>
-    <button color="warn" mat-raised-button (click)="excluir()">Excluir</button>
+  <button type="submit" color="primary" mat-raised-button (click)="editar()">Editar</button>
+  <button type="reset" color="warn" mat-raised-button (click)="excluir()">Excluir</button>
   </mat-card-actions>
-</mat-card>
+  </mat-card>
+</mat-list>
+
 
 <ng-template #semRegistro>
-  <h1 class="full-width main-div">Nenhum registro encontrado!</h1>
+  <h1 class="full-width main-div">Nenhum registro encontrado :(</h1>
 </ng-template>

@@ -2,14 +2,26 @@
 <div class="main-div">
   <mat-card class="center width50" *ngIf="cadastro" >
     <form autocomplete="off" novalidate [formGroup]="cadastro" (ngSubmit)="submit()" (ngReset)="reiniciarForm()">
+      <!-- NGSUBMIT-->
       <mat-card-content>
         <dio-input-text titulo="Título *" controlName="titulo" [formGroup]="cadastro"></dio-input-text>
+        <!-- <mat-error *ngIf="validacao.hasErrorValidar(f.titulo, 'required')">campo obrigatório!</mat-error>
+        <mat-error *ngIf="validacao.hasErrorValidar(f.titulo, 'minLength')">O campo precisa ter no mínimo 3 caracteres</mat-error>
+        <mat-error *ngIf="validacao.hasErrorValidar(f.titulo, 'maxLength')">O campo pode ter no máximo 256 caracteres</mat-error> -->
         <dio-input-text titulo="Link Foto" controlName="urlFoto" [formGroup]="cadastro"></dio-input-text>
-        <dio-input-date titulo="Data de Lançamento *" controlName="dtLancamento" [formGroup]="cadastro"></dio-input-date>
+         <!-- <mat-error *ngIf="validacao.hasErrorValidar(f.urlFoto, 'minLength')">O campo precisa ter no mínimo 10 caracteres</mat-error>-->
+        <dio-input-date readonly titulo="Data de Lançamento *" controlName="dtLancamento" [formGroup]="cadastro"></dio-input-date>
+        <!-- READONLY-->
+        <!--<mat-error *ngIf="validacao.hasErrorValidar(f.dtLancamento, 'required')">campo obrigatório!</mat-error>-->
         <dio-input-textarea titulo="Descrição" controlName="descricao" [formGroup]="cadastro"></dio-input-textarea>
-        <dio-input-number titulo="Nota IMDb *" controlName="nota" step="0.1" [formGroup]="cadastro"></dio-input-number>
-        <dio-input-text titulo="Link IMDb" controlName="urlIMDb" [formGroup]="cadastro"></dio-input-text>
+        <dio-input-number titulo="Nota IMDb *" type="number" min="0" max="5" controlName="nota" step="0.1" [formGroup]="cadastro"></dio-input-number>
+        <!--<mat-error *ngIf="validacao.hasErrorValidar(f.nota, 'required')">campo obrigatório!</mat-error>-->
+        <!--<mat-error *ngIf="validacao.hasErrorValidar(f.nota, 'min')">A nota mínima é 0</mat-error>-->
+        <!--<mat-error *ngIf="validacao.hasErrorValidar(f.titulo, 'max')">A nota máxima é 5</mat-error>-->
+        <!-- STEP É A FREQUENCIA QUE VAI MUDANDO O CONTADOR NA NOTA-->
+        <dio-input-text titulo="Link IMDb" controlName="titulo" [formGroup]="cadastro"></dio-input-text>
         <dio-input-select titulo="Gênero *" [opcoes]="generos" controlName="genero" [formGroup]="cadastro"></dio-input-select>
+
       </mat-card-content>
       <mat-card-actions>
         <button type="submit" color="accent" mat-raised-button>Salvar</button>
